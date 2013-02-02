@@ -438,7 +438,20 @@ class LetterTest(Effect):
                               x_offset, y_offset)
             self.wall.draw()
             time.sleep(.1)
+            
+class SeizureTest(Effect):
+    def run(self):
+        hues = [random.random(), random.random()]
+        start_time = time.time()
+        while time.time() - start_time < 5:
+            for h in hues:
+                hsv = (h, 1, 1)
+                for x in range(self.wall.width):
+                    for y in range(self.wall.height):
+                        self.wall.set_pixel(x, y, hsv)
+                self.wall.draw()
+        
 
 Effects = [SolidColorTest, HueTest, SaturationTest, ValueTest,
            DictionaryTest, Checkerboards, Columns, Rainbow,
-           Twinkle, KnightMoves, Matrix, Bouncer, LetterTest]
+           Twinkle, KnightMoves, Matrix, Bouncer, LetterTest, SeizureTest]
