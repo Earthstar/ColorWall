@@ -441,8 +441,15 @@ class LetterTest(Effect):
             
 class SeizureTest(Effect):
     def run(self):
-        hues = [random.random(), random.random()]
+        # Pick a random hue and create another hue that is opposite it
+        # on the color wheel
+        hue = random.random()
+        hue2 = hue + 0.5
+        if hue2 > 1:
+            hue2 -= 1
+        hues = [hue, hue2]
         start_time = time.time()
+        # Flash for 5 seconds
         while time.time() - start_time < 5:
             for h in hues:
                 hsv = (h, 1, 1)
